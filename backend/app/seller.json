@@ -1,0 +1,56 @@
+[
+  {
+    "seller_id": "sell_brand_001",
+    "company_name": "Satya Premium Boutique",
+    "trust_score": "100.00",
+    "total_offenses": 0,
+    "compliance_status": "ACTIVE",
+    "is_premium_brand": true,
+    "created_at": "2026-07-14 20:42:34.377935+00"
+  },
+  {
+    "seller_id": "sell_rogue_999",
+    "company_name": "Shady Knockoffs LLC",
+    "trust_score": "40.00",
+    "total_offenses": 0,
+    "compliance_status": "ACTIVE",
+    "is_premium_brand": false,
+    "created_at": "2026-07-14 20:42:34.377935+00"
+  },
+  {
+    "seller_id": "sell_auth_002",
+    "company_name": "Verified Retailer Inc",
+    "trust_score": "98.00",
+    "total_offenses": 0,
+    "compliance_status": "ACTIVE",
+    "is_premium_brand": false,
+    "created_at": "2026-07-14 20:42:34.377935+00"
+  },
+  {
+    "seller_id": "seller_A",
+    "company_name": "Standard Apparel",
+    "trust_score": "86.00",
+    "total_offenses": 0,
+    "compliance_status": "ACTIVE",
+    "is_premium_brand": false,
+    "created_at": "2026-07-15 22:07:03.614212+00"
+  },
+  {
+    "seller_id": "seller_B",
+    "company_name": "Cheap Knockoffs Co.",
+    "trust_score": "54.00",
+    "total_offenses": 3,
+    "compliance_status": "ACTIVE",
+    "is_premium_brand": false,
+    "created_at": "2026-07-15 22:09:29.683636+00"
+  },
+  {
+    "seller_id": "seller_C",
+    "company_name": "Luxury Goods Inc.",
+    "trust_score": "101.00",
+    "total_offenses": 0,
+    "compliance_status": "ACTIVE",
+    "is_premium_brand": true,
+    "created_at": "2026-07-15 22:09:29.683636+00"
+  }
+]

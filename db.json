@@ -1,0 +1,152 @@
+[
+  {
+    "table_name": "products",
+    "column_name": "product_id",
+    "data_type": "character varying"
+  },
+  {
+    "table_name": "products",
+    "column_name": "seller_id",
+    "data_type": "character varying"
+  },
+  {
+    "table_name": "products",
+    "column_name": "title",
+    "data_type": "character varying"
+  },
+  {
+    "table_name": "products",
+    "column_name": "category",
+    "data_type": "character varying"
+  },
+  {
+    "table_name": "products",
+    "column_name": "catalog_image_url",
+    "data_type": "text"
+  },
+  {
+    "table_name": "products",
+    "column_name": "visibility_multiplier",
+    "data_type": "numeric"
+  },
+  {
+    "table_name": "products",
+    "column_name": "ui_warning_patch",
+    "data_type": "text"
+  },
+  {
+    "table_name": "products",
+    "column_name": "is_paused",
+    "data_type": "boolean"
+  },
+  {
+    "table_name": "products",
+    "column_name": "is_visually_protected",
+    "data_type": "boolean"
+  },
+  {
+    "table_name": "products",
+    "column_name": "catalog_image_embedding",
+    "data_type": "USER-DEFINED"
+  },
+  {
+    "table_name": "products",
+    "column_name": "created_at",
+    "data_type": "timestamp with time zone"
+  },
+  {
+    "table_name": "products",
+    "column_name": "cluster_id",
+    "data_type": "character varying"
+  },
+  {
+    "table_name": "satya_audit_logs",
+    "column_name": "audit_id",
+    "data_type": "uuid"
+  },
+  {
+    "table_name": "satya_audit_logs",
+    "column_name": "product_id",
+    "data_type": "character varying"
+  },
+  {
+    "table_name": "satya_audit_logs",
+    "column_name": "trigger_type",
+    "data_type": "character varying"
+  },
+  {
+    "table_name": "satya_audit_logs",
+    "column_name": "pulse_sentiment_score",
+    "data_type": "numeric"
+  },
+  {
+    "table_name": "satya_audit_logs",
+    "column_name": "vision_discrepancy_score",
+    "data_type": "numeric"
+  },
+  {
+    "table_name": "satya_audit_logs",
+    "column_name": "executed_action",
+    "data_type": "character varying"
+  },
+  {
+    "table_name": "satya_audit_logs",
+    "column_name": "created_at",
+    "data_type": "timestamp with time zone"
+  },
+  {
+    "table_name": "seller_brand_authorizations",
+    "column_name": "authorization_id",
+    "data_type": "integer"
+  },
+  {
+    "table_name": "seller_brand_authorizations",
+    "column_name": "reseller_seller_id",
+    "data_type": "character varying"
+  },
+  {
+    "table_name": "seller_brand_authorizations",
+    "column_name": "brand_seller_id",
+    "data_type": "character varying"
+  },
+  {
+    "table_name": "seller_brand_authorizations",
+    "column_name": "granted_at",
+    "data_type": "timestamp with time zone"
+  },
+  {
+    "table_name": "sellers",
+    "column_name": "seller_id",
+    "data_type": "character varying"
+  },
+  {
+    "table_name": "sellers",
+    "column_name": "company_name",
+    "data_type": "character varying"
+  },
+  {
+    "table_name": "sellers",
+    "column_name": "trust_score",
+    "data_type": "numeric"
+  },
+  {
+    "table_name": "sellers",
+    "column_name": "total_offenses",
+    "data_type": "integer"
+  },
+  {
+    "table_name": "sellers",
+    "column_name": "compliance_status",
+    "data_type": "character varying"
+  },
+  {
+    "table_name": "sellers",
+    "column_name": "is_premium_brand",
+    "data_type": "boolean"
+  },
+  {
+    "table_name": "sellers",
+    "column_name": "created_at",
+    "data_type": "timestamp with time zone"
+  }
+]

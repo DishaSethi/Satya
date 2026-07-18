@@ -1,0 +1,32 @@
+[
+  {
+    "audit_id": "5d46919f-c02c-4fcf-83ab-b6e0fd8e9bf9",
+    "product_id": "prod_02d70aca",
+    "trigger_type": "POST_PURCHASE_REVIEW",
+    "pulse_sentiment_score": "1.00",
+    "vision_discrepancy_score": "0.00",
+    "executed_action": "PASS",
+    "created_at": "2026-07-18 12:51:34.3714+00",
+    "event_details": "👁️ [VISION NODE] Discrepancy Score: 0.0 | 🧠 [NLP NODE] Sentiment: POSITIVE\n🏁 [FINAL VERDICT] PASS | [\"Executive Action: PASS. Summary: The product review was passed due to a low Visual Discrepancy Score of 0.00, indicating a high level of consistency between the catalog and unboxing images, combined with a lack of detected scam intent in the buyer's text and a high Seller Historical Trust Score of 105.0/100.\"]"
+  },
+  {
+    "audit_id": "70e47175-da80-4e56-b939-ce412ebdfcb8",
+    "product_id": "prod_2fabcb12",
+    "trigger_type": "POST_PURCHASE_REVIEW",
+    "pulse_sentiment_score": "-1.00",
+    "vision_discrepancy_score": "0.75",
+    "executed_action": "FLAG_MANUAL",
+    "created_at": "2026-07-18 12:53:16.213753+00",
+    "event_details": "👁️ [VISION NODE] Discrepancy Score: 0.75 | 🧠 [NLP NODE] Sentiment: NEGATIVE\n🏁 [FINAL VERDICT] FLAG_MANUAL | [\"Executive Action: FLAG_MANUAL. Summary: The product review has been flagged for manual review due to a high visual discrepancy score and detected buyer scam intent, warranting further investigation despite the seller's otherwise excellent historical trust score.\"]"
+  },
+  {
+    "audit_id": "3d3c9534-0c00-4eb6-8974-154620d738c3",
+    "product_id": "prod_9ab8620e",
+    "trigger_type": "POST_PURCHASE_REVIEW",
+    "pulse_sentiment_score": "-1.00",
+    "vision_discrepancy_score": "1.00",
+    "executed_action": "TRIGGER_UI_PATCH",
+    "created_at": "2026-07-18 12:54:56.529128+00",
+    "event_details": "👁️ [VISION NODE] Discrepancy Score: 1.0 | 🧠 [NLP NODE] Sentiment: NEGATIVE\n🏁 [FINAL VERDICT] TRIGGER_UI_PATCH | [\"Executive Action: TRIGGER_UI_PATCH. Summary: Based on the detected visual discrepancy between the catalog and unboxing images, combined with the buyer's explicit scam intent in their review text and the seller's low historical trust score of 41.0/100, the action of TRIGGER_UI_PATCH was taken to address the suspected Seller Fraud / Bait & Switch.\"]"
+  }
+]

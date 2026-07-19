@@ -17,6 +17,9 @@ AZURE_PG_URL = os.getenv("DATABASE_URL")
 if not AZURE_PG_URL:
     raise ValueError("🚨 FATAL ERROR: DATABASE_URL is missing. Please check your .env file.")
 
+# Add this temporarily in main.py just before the line that crashes
+import os
+print(f"DEBUG: DATABASE_URL is: '{os.getenv('DATABASE_URL')}'")
 # Import your services
 from app.services.ingestion import process_catalog_upload
 from app.services.queue_service import publish_to_queue, consume_from_queue
@@ -48,7 +51,7 @@ app = FastAPI(
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],
+    allow_origins=["http://localhost:5173","https://satya-demo-frontend.vercel.app"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

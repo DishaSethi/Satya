@@ -1,7 +1,8 @@
 import axios from 'axios';
 
+// Dynamically use the Vercel environment variable, or fall back to localhost for local testing
 const api = axios.create({
-  baseURL: 'http://localhost:8000',
+  baseURL: import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000',
   headers: {
     'Content-Type': 'application/json',
   },

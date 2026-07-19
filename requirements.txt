@@ -1,0 +1,16 @@
+fastapi
+uvicorn
+python-multipart
+python-dotenv
+pydantic
+asyncpg
+psycopg2-binary
+langchain
+langchain-groq
+langchain-google-genai
+langgraph
+azure-storage-blob
+azure-servicebus
+numpy
+Pillow
+sentence-transformers

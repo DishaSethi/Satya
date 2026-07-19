@@ -26,42 +26,42 @@ graph TD
     %% 1. CLIENT INTERFACES
     subgraph Tier1 [1. Client Interfaces]
         direction LR
-        Seller[🛒 Seller Catalog Portal<br>Uploads products & images]:::ui
-        Customer[📦 Customer Review Module<br>Submits text & unboxing photos]:::ui
+        Seller["🛒 Seller Catalog Portal<br>Uploads products & images"]:::ui
+        Customer["📦 Customer Review Module<br>Submits text & unboxing photos"]:::ui
     end
 
     %% 2. FASTAPI GATEWAY ENGINE
     subgraph Tier2 [2. FastAPI Gateway Engine]
         direction LR
-        IngestAPI[Ingestion Router]:::api
-        ReviewAPI[Async Review Router]:::api
+        IngestAPI["Ingestion Router"]:::api
+        ReviewAPI["Async Review Router"]:::api
     end
 
     %% 3. SECURITY GUARDRAILS & EVENT BROKERS
     subgraph Tier3 [3. Security Guardrails & Event Brokers]
-        CosineCheck{CLIP Cosine Similarity<br>> 0.96?}:::broker
-        IPLookup{Brand IP Lookup<br>Protected Asset?}:::broker
-        Queue[Background Event Broker<br>Azure Service Bus]:::broker
+        CosineCheck{"CLIP Cosine Similarity<br>> 0.96?"}:::broker
+        IPLookup{"Brand IP Lookup<br>Protected Asset?"}:::broker
+        Queue["Background Event Broker<br>Azure Service Bus"]:::broker
     end
 
     %% 4. LANGGRAPH AGENTIC SWARM
     subgraph Tier4 [4. LangGraph Agentic Swarm]
         direction TB
-        State[Shared State Machine Object<br>{vision_score, sentiment, intent, seller_history}]:::ai
+        State["Shared State Machine Object<br>{vision_score, sentiment, intent, seller_history}"]:::ai
 
-        Vision[👁️ Vision Node<br>Gemini 1.5 Pro Vision<br>Calculates vector discrepancy]:::ai
-        Pulse[🧠 Pulse Node<br>Groq LPU<br>Analyzes sentiment & deception]:::ai
+        Vision["👁️ Vision Node<br>Gemini 1.5 Pro Vision<br>Calculates vector discrepancy"]:::ai
+        Pulse["🧠 Pulse Node<br>Groq LPU<br>Analyzes sentiment & deception"]:::ai
 
-        Exec[🤖 Executive Node<br>Llama / Groq Router<br>Queries DB for historical trends]:::ai
+        Exec["🤖 Executive Node<br>Llama / Groq Router<br>Queries DB for historical trends"]:::ai
 
-        ActionRed[Action: Critical Mismatch<br>Apply UI Warning & Degrade Trust]:::alert
-        ActionYellow[Action: Anomalous Spike<br>Route to Admin Panel]:::warning
-        ActionGreen[Action: Verified Pass<br>Increment Trust Score +1]:::db
+        ActionRed["Action: Critical Mismatch<br>Apply UI Warning & Degrade Trust"]:::alert
+        ActionYellow["Action: Anomalous Spike<br>Route to Admin Panel"]:::warning
+        ActionGreen["Action: Verified Pass<br>Increment Trust Score +1"]:::db
     end
 
     %% 5. DATA STORAGE LAYER
     subgraph Tier5 [5. Data Storage Layer]
-        DB[(Azure Database for PostgreSQL<br>pgvector Enabled + HNSW Indexing)]:::db
+        DB[("Azure Database for PostgreSQL<br>pgvector Enabled + HNSW Indexing")]:::db
     end
 
     %% Edge Connections & Routing
@@ -92,6 +92,7 @@ graph TD
     ActionRed --> DB
     ActionYellow --> DB
     ActionGreen --> DB
+
 ## 🧠 Architecture Deep Dive
 Satya operates on a dual-pipeline architecture designed to handle high-throughput catalog ingestion and asynchronous, AI-heavy customer review analysis.
 
@@ -108,7 +109,7 @@ When a customer submits a review via the **Customer Review Module**, the payload
 
 Based on the Executive Node's ruling, the system executes one of three final paths: **Critical Mismatch** (auto-applies a warning patch to the product UI and docks trust scores), **Anomalous Spike** (routes to Human Admin), or **Verified Pass** (rewards the seller).
 
----
+-
 
 ## 🛠️ Technology Stack
 

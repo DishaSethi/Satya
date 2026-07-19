@@ -92,6 +92,8 @@ graph TD
     ActionRed --> DB
     ActionYellow --> DB
     ActionGreen --> DB
+```
+
 
 ## 🧠 Architecture Deep Dive
 Satya operates on a dual-pipeline architecture designed to handle high-throughput catalog ingestion and asynchronous, AI-heavy customer review analysis.

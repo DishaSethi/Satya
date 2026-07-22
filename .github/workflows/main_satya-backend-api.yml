@@ -1,4 +1,4 @@
-name: Build and deploy Python app to Azure Web App - satya-backend-api
+name: Build and Deploy Docker App
 
 on:
   push:
@@ -6,63 +6,39 @@ on:
       - main
   workflow_dispatch:
 
+env:
+  REGISTRY: ghcr.io
+
 jobs:
-  build:
+  build-and-push-image:
     runs-on: ubuntu-latest
-    container: python:3.11-bullseye
+    permissions:
+      contents: read
+      packages: write
+
     steps:
-      - name: Checkout Code
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install Zip Utility
-        run: apt-get update && apt-get install -y zip
-
-      - name: Build Virtual Environment and Install Dependencies
-        working-directory: ./backend
-        run: |
-          python -m venv antenv
-          antenv/bin/python -m pip install --upgrade pip
-
-          # Force CPU-only for the entire requirements.txt resolution
-          antenv/bin/pip install --no-cache-dir -r requirements.txt --extra-index-url https://download.pytorch.org/whl/cpu
-
-          # aggressively delete junk files to shrink the zip size
-          find antenv -name "*.pyc" -delete
-          find antenv -name "__pycache__" -type d -exec rm -r {} +
-          rm -rf antenv/share antenv/include
-      - name: Zip the backend artifact for deployment
-        working-directory: ./backend
-        run: zip -r ../release.zip .
-
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
+      - name: Log in to the Container registry
+        uses: docker/login-action@v3
         with:
-          name: python-app
-          path: release.zip
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build
-    permissions:
-      id-token: write
-      contents: read
-
-    steps:
-      - name: Download artifact
-        uses: actions/download-artifact@v4
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@v5
         with:
-          name: python-app
+          images: ${{ env.REGISTRY }}/${{ github.repository }}
+          tags: |
+            type=raw,value=latest
 
-      - name: Login to Azure
-        uses: azure/login@v2
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v5
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_D9B76A108AC94F66889BAE08AA211D98 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_A86F5CC0323846CE95960B8B8AB51FD1 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_4DF4DCC919CC417FB24F189AFF5FA83C }}
-
-      - name: Deploy to Azure Web App
-        uses: azure/webapps-deploy@v3
-        with:
-          app-name: 'satya-backend-api'
-          slot-name: 'Production'
-          package: release.zip
+          context: ./backend
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}

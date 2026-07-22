@@ -9,7 +9,7 @@ api_key = os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY")
 
 # Initialize Gemini 3.5 Flash (Lightning fast and excellent at vision QA)
 vision_llm = ChatGoogleGenerativeAI(
-    model="gemini-3.5-flash",
+    model="gemini-3.5-flash-lite",
     api_key=api_key,
     temperature=0.0
 )

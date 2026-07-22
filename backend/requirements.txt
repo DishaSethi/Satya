@@ -11,7 +11,8 @@ langchain-google-genai
 langgraph
 azure-storage-blob
 azure-servicebus
-numpy
+# numpy
 Pillow
-sentence-transformers
+# sentence-transformers
 aiohttp
+fastembed

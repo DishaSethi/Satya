@@ -5,15 +5,15 @@ import numpy as np
 from PIL import Image
 from fastapi import UploadFile, HTTPException
 from sentence_transformers import SentenceTransformer
-
+from fastembed import ImageEmbedding
 vision_model = None
 
 def get_vision_model():
     """Lazy-loads the CLIP model to prevent memory bottlenecks on startup."""
     global vision_model
     if vision_model is None:
-        print("🧠 Loading CLIP Vision Model...")
-        vision_model = SentenceTransformer('clip-ViT-B-32')
+        print("🧠 Loading Optimized CLIP Vision Model (FastEmbed)...")
+        vision_model = ImageEmbedding(model_name="Qdrant/clip-ViT-B-32-vision")
     return vision_model
 
 
@@ -84,7 +84,8 @@ async def process_catalog_upload(seller_id: str, title: str, category: str,publi
 
         # Keep execution inside a threadpool if it blocks the loop slightly,
         # but standard encoding works fine here for a prototype.
-        raw_vector = model.encode(pil_image)
+        vector_generator = model.embed([pil_image])
+        raw_vector = list(vector_generator)[0]
         # Pad to 1536D for Azure pgvector schema
         padded_vector = np.pad(raw_vector, (0, 1024), 'constant').tolist()
     except Exception as e:

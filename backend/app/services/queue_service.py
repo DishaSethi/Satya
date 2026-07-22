@@ -5,7 +5,7 @@ import json
 import uuid
 import asyncio
 from azure.servicebus.aio import ServiceBusClient
-from azure.servicebus import ServiceBusMessage
+from azure.servicebus import ServiceBusMessage,TransportType
 from app.agents.graph import swarm_app
 
 # Pull Azure variables loaded via dotenv in main.py
@@ -18,7 +18,7 @@ async def publish_to_queue(payload: dict):
         print("⚠️ [AZURE BUS] Connection string or Queue Name missing from environment variables.")
         return
 
-    async with ServiceBusClient.from_connection_string(conn_str=AZURE_SERVICEBUS_CONNECTION_STRING) as client:
+    async with ServiceBusClient.from_connection_string(conn_str=AZURE_SERVICEBUS_CONNECTION_STRING,transport_type=TransportType.AmqpOverWebsocket) as client:
         sender = client.get_queue_sender(queue_name=QUEUE_NAME)
         async with sender:
             msg = ServiceBusMessage(json.dumps(payload))
@@ -31,7 +31,7 @@ async def consume_from_queue(db_pool):
 
     while True:
         try:
-            async with ServiceBusClient.from_connection_string(conn_str=AZURE_SERVICEBUS_CONNECTION_STRING) as client:
+            async with ServiceBusClient.from_connection_string(conn_str=AZURE_SERVICEBUS_CONNECTION_STRING,transport_type=TransportType.AmqpOverWebsocket) as client:
                 receiver = client.get_queue_receiver(queue_name=QUEUE_NAME)
                 async with receiver:
                     # Receive structural messages from Azure with a polling wait time

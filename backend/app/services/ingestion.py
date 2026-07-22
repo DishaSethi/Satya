@@ -4,7 +4,7 @@ import json
 import numpy as np
 from PIL import Image
 from fastapi import UploadFile, HTTPException
-from sentence_transformers import SentenceTransformer
+
 from fastembed import ImageEmbedding
 vision_model = None
 

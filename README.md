@@ -6,8 +6,8 @@ Satya is an enterprise-grade intelligent governance platform designed to monitor
 
 ## 🌐 Live Environments
 * **Frontend Dashboard:** [satya-demo-frontend.vercel.app](https://satya-demo-frontend.vercel.app/)
-* **Backend Gateway Base:** `https://satya-backend-api-hqhsbwddb9g2fec2.centralindia-01.azurewebsites.net`
-* **Backend Gateway Base for backend testing:** `https://satya-backend-api-hqhsbwddb9g2fec2.centralindia-01.azurewebsites.net/docs`
+* **Backend Gateway Base:** `https://satya-containier-ctehc4g2cpajg6c2.southeastasia-01.azurewebsites.net/`
+* **Backend Gateway Base for backend testing:** `https://satya-containier-ctehc4g2cpajg6c2.southeastasia-01.azurewebsites.net/docs`
 
 ---
 

@@ -31,9 +31,13 @@ async def consume_from_queue(db_pool):
 
     while True:
         try:
-            async with ServiceBusClient.from_connection_string(conn_str=AZURE_SERVICEBUS_CONNECTION_STRING,transport_type=TransportType.AmqpOverWebsocket) as client:
-                receiver = client.get_queue_receiver(queue_name=QUEUE_NAME)
-                async with receiver:
+
+            # Add a small initialization timeout or retry wrapper if needed
+            async with ServiceBusClient.from_connection_string(
+                conn_str=AZURE_SERVICEBUS_CONNECTION_STRING,
+                transport_type=TransportType.AmqpOverWebsocket
+            ) as client:
+                async with client.get_queue_receiver(queue_name=QUEUE_NAME) as receiver:
                     # Receive structural messages from Azure with a polling wait time
                     messages = await receiver.receive_messages(max_wait_time=5, max_message_count=1)
 

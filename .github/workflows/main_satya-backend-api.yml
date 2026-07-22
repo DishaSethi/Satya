@@ -23,12 +23,13 @@ jobs:
           python -m venv antenv
           antenv/bin/python -m pip install --upgrade pip
 
-          # Force install CPU-only torch to drop 2.5GB of dead weight
-          antenv/bin/pip install torch --index-url https://download.pytorch.org/whl/cpu
+          # Force CPU-only for the entire requirements.txt resolution
+          antenv/bin/pip install --no-cache-dir -r requirements.txt --extra-index-url https://download.pytorch.org/whl/cpu
 
-          # Install the rest of your requirements
-          antenv/bin/pip install --no-cache-dir --only-binary=:all: -r requirements.txt
-
+          # aggressively delete junk files to shrink the zip size
+          find antenv -name "*.pyc" -delete
+          find antenv -name "__pycache__" -type d -exec rm -r {} +
+          rm -rf antenv/share antenv/include
       - name: Zip the backend artifact for deployment
         working-directory: ./backend
         run: zip -r ../release.zip .

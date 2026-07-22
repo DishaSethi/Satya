@@ -8,22 +8,21 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
+    container: python:3.11-bullseye
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout Code
+        uses: actions/checkout@v4
 
-      - name: Set up Python version
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
+      - name: Install Zip Utility
+        run: apt-get update && apt-get install -y zip
 
       - name: Build Virtual Environment and Install Dependencies
         working-directory: ./backend
         run: |
           python -m venv antenv
-          source antenv/bin/activate
-          python -m pip install --upgrade pip
-          pip install --no-cache-dir --only-binary=:all: -r requirements.txt
+          antenv/bin/python -m pip install --upgrade pip
+          antenv/bin/pip install --no-cache-dir --only-binary=:all: -r requirements.txt
 
       - name: Zip the backend artifact for deployment
         working-directory: ./backend
@@ -36,7 +35,7 @@ jobs:
           path: release.zip
 
   deploy:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     needs: build
     permissions:
       id-token: write
@@ -55,7 +54,7 @@ jobs:
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_A86F5CC0323846CE95960B8B8AB51FD1 }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_4DF4DCC919CC417FB24F189AFF5FA83C }}
 
-      - name: 'Deploy to Azure Web App'
+      - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v3
         with:
           app-name: 'satya-backend-api'

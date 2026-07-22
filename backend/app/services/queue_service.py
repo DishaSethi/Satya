@@ -39,6 +39,7 @@ async def consume_from_queue(db_pool):
             ) as client:
                 async with client.get_queue_receiver(queue_name=QUEUE_NAME) as receiver:
                     # Receive structural messages from Azure with a polling wait time
+                  while True:
                     messages = await receiver.receive_messages(max_wait_time=5, max_message_count=1)
 
                     for msg in messages:
